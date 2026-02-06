@@ -1,11 +1,22 @@
 [
   {
-    "name": "TIE Fighter (Render Test)",
+    "name": "Empire TIE Fighter (Minimal Test - MeLovesLego)",
     "forceZup": false,
-    "mass": 1,
-    "tensorFactor": 0.1,
-    "dragFactor": 0.1,
-    "startAltitude": 500,
+
+    "mass": 2200,
+    "tensorFactor": 0.18,
+    "dragFactor": 0.75,
+    "com": [0, 0, 0],
+
+    "startAltitude": 600,
+    "startTilt": 0,
+    "minimumSpeed": 0,
+
+    "minRPM": 1000,
+    "maxRPM": 10000,
+    "driveRatio": 0.25,
+    "engineInertia": 2,
+    "startupTime": 2,
 
     "parts": [
       {
@@ -14,11 +25,70 @@
         "position": [0, 0, 0],
         "model": "model.glb",
         "gltf2model": { "url": "model.glb" }
+      },
+
+      {
+        "name": "body",
+        "type": "airfoil",
+        "position": [0, 0, 0],
+        "liftFactor": 6,
+        "dragFactor": 0.5,
+        "forceDirection": "Z",
+        "points": { "forceSourcePoint": [0, 0, 0] }
+      },
+
+      {
+        "name": "bodyH",
+        "type": "airfoil",
+        "position": [0, 0, 0],
+        "liftFactor": 2,
+        "dragFactor": 0.0,
+        "forceDirection": "X",
+        "points": { "forceSourcePoint": [0, 0, 0] }
+      },
+
+      {
+        "name": "engine",
+        "type": "engine",
+        "thrust": 26000,
+        "afterBurnerThrust": 52000,
+        "forceDirection": "Y",
+        "contrail": false,
+        "points": {
+          "forceSourcePoint": [0, 0, 0],
+          "contrailAnchor": [0, -6, 0]
+        }
       }
     ],
 
+    "contactProperties": {
+      "wheel": {
+        "frictionCoef": 2,
+        "dynamicFriction": 0.01,
+        "rollingFriction": 0.00001,
+        "damping": 1
+      },
+      "frame": {
+        "frictionCoef": 2,
+        "dynamicFriction": 0.01,
+        "damping": 1
+      },
+      "airfoil": {
+        "frictionCoef": 2,
+        "dynamicFriction": 0.01,
+        "damping": 1
+      }
+    },
+
     "cameras": {
-      "follow": { "distance": 30 }
-    }
+      "follow": { "distance": 20 },
+      "cockpit": {
+        "position": [0, 0.7, 0.0],
+        "orientation": [180, 0, 0],
+        "FOV": 1.6
+      }
+    },
+
+    "shadowBox": [12, 12]
   }
 ]
