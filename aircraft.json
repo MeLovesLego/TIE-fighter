@@ -1,13 +1,15 @@
 [
   {
-    "name": "TIE Fighter",
+    "name": "TIE Fighter (Minimal Stable)",
     "forceZup": false,
 
-    "mass": 3500,
-    "dragFactor": 0.3,
-    "tensorFactor": 0.15,
+    "mass": 3200,
+    "tensorFactor": 0.18,
+    "dragFactor": 0.35,
+    "com": [0, 0, 0],
 
-    "startAltitude": 3,
+    "startAltitude": 5,
+    "startTilt": 0,
     "minimumSpeed": 0,
 
     "parts": [
@@ -19,33 +21,54 @@
       },
 
       {
-        "name": "body",
+        "name": "frame",
         "type": "airfoil",
-        "liftFactor": 8,
-        "dragFactor": 0.3,
+        "position": [0, 0, 0],
+        "liftFactor": 6,
+        "dragFactor": 0.25,
         "forceDirection": "Z",
         "points": {
           "forceSourcePoint": [0, 0, 0]
-        }
+        },
+
+        "collisionPoints": [
+          [ 0.0,  0.0, -1.1],
+          [ 0.9,  0.0, -0.6],
+          [-0.9,  0.0, -0.6],
+          [ 0.0,  1.2, -0.6],
+          [ 0.0, -1.2, -0.6]
+        ]
       },
 
       {
         "name": "engine",
         "type": "engine",
-        "thrust": 60000,
+        "thrust": 65000,
         "forceDirection": "Y",
         "points": {
-          "forceSourcePoint": [0, 0.8, 0]
+          "forceSourcePoint": [0, -0.8, 0.0]
         }
       }
     ],
 
-    "cameras": {
-      "follow": {
-        "distance": 12
+    "contactProperties": {
+      "frame": {
+        "frictionCoef": 1.8,
+        "dynamicFriction": 0.01,
+        "rollingFriction": 0.00001,
+        "damping": 1
       },
+      "airfoil": {
+        "frictionCoef": 1.8,
+        "dynamicFriction": 0.01,
+        "damping": 1
+      }
+    },
+
+    "cameras": {
+      "follow": { "distance": 14 },
       "cockpit": {
-        "position": [0, 0.5, 0.2],
+        "position": [0, 0.3, 0.1],
         "orientation": [0, 0, 0],
         "FOV": 1.8
       }
